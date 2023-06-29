@@ -1,2 +1,6 @@
 # pdDirectBingo
-A bingo sheet generator made for the upcoming playdate direct
+A Bingo Sheet Generator made for the upcoming PlayDate Direct hosted by TinyYellowMachine.
+
+Feel free to use any of this code for yourself.
+
+Cheers PizzaFuel!
