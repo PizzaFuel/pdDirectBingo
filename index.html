@@ -2,7 +2,185 @@
 <html>
 <head>
   <title>PlayDate Direct Bingo Generator</title>
-  <style>
+  <script>
+    function populateTable() {
+        var values = [
+    "Gant is on screen for more than 1 minute straight",
+    "Surprise celebrity appearance (Island Boys?)",
+    "Surprise Panic staff cameo",
+    "A 3D game is shown",
+    "A new contest gets announced",
+    "Cake gets mentioned",
+    "New sequel to a Playdate game",
+    "Long-awaited game finally gets release date",
+    "New port of an existing game",
+    "Itch game comes to Catalog",
+    "Santos Sisters gets mentioned",
+    "Playdate theme gets played",
+    "Stereo Dock",
+    "New tool for the Playdate gets unveiled",
+    "Game bundle gets announced",
+    "Trailer is almost exactly 3 minutes long",
+    "Trailer is shorter than 12 seconds",
+    "Horror game gets shown",
+    "Explicit language (shit, fuck, etc.)",
+    "Game we haven't heard about since last year",
+    "DLC / Free update for a game",
+    "Horrible Dad Pun",
+    "Face of a developer is on screen",
+    "Trailer has voiced narration",
+    "10+ Pulp Games get shown",
+    "Game about flying gets shown",
+    "Card-based game gets shown",
+    "Trailer contains unpacking animation",
+    "Podcast gets mentioned",
+    "New music collection / album release",
+    "Twitter call to action",
+    "Playdate.Store gets mentioned",
+    "New Metroidvania",
+    "Game about pets or monster training",
+    "Physical Playdate Merch",
+    "Something about speedrunning",
+    "Launch animation gets shown",
+    "Block pushing game",
+    "Special new animation for transitions between trailers",
+    "TWO crank puns in ONE trailer",
+    "Release: 2024",
+    "Releasing TODAY",
+    "Broken Playdate shown",
+    "Walking simulator",
+    "Beach gets mentioned",
+    "Pre-existing IP from another platform now on Playdate",
+    "Playdate in a sock is shown",
+    "PIIIIIZZZAAAAA!",
+    "Frog on screen",
+    "Trailer without sound",
+    "\"This Holiday Season\"",
+    "STRANGEST.IO"
+    ];
+
+      var cells = document.getElementsByTagName('td');
+      var usedValues = [];
+
+      for (var i = 0; i < cells.length; i++) {
+        var randomIndex = Math.floor(Math.random() * values.length);
+        var randomValue = values[randomIndex];
+
+        cells[i].textContent = randomValue;
+
+        // Remove the used value from the array to prevent duplicates
+        values.splice(randomIndex, 1);
+        usedValues.push(randomValue);
+      }
+
+      console.log("Used Values:", usedValues);
+    }
+
+    window.addEventListener('DOMContentLoaded', populateTable);
+    
+
+    var isExpanded = true; // Track if the table is expanded (5x5) or not
+
+    function expandTable() {
+      var table = document.querySelector('table');
+      var rows = table.getElementsByTagName('tr');
+
+      if (isExpanded) {
+        // Remove the last row
+        table.deleteRow(rows.length - 1);
+
+        // Remove the last cell from each existing row
+        for (var j = 0; j < rows.length; j++) {
+          rows[j].deleteCell(rows[j].cells.length - 1);
+        }
+      } else {
+        // Add a new row at the end
+        var newRow = document.createElement('tr');
+        for (var i = 0; i < rows[0].cells.length; i++) {
+          var newCell = document.createElement('td');
+          newRow.appendChild(newCell);
+        }
+        table.appendChild(newRow);
+
+        // Add a new cell to each existing row
+        for (var j = 0; j < rows.length; j++) {
+          var newCell = document.createElement('td');
+          rows[j].appendChild(newCell);
+        }
+      }
+
+      isExpanded = !isExpanded; // Toggle the value of isExpanded
+    
+       // Update the switch text
+       var switchText = document.getElementById('switch-text');
+      switchText.textContent = isExpanded ? 'Switch to 4x4' : 'Switch to 5x5';
+      
+      // Update values in Bingo Card
+      populateTable()
+    }
+  </script>
+</head>
+<body>
+    <div class="mainContent">  
+        <h1>PlayDate Direct Bingo</h1>
+        <table>
+            <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+    <div class="reset">
+        <button onclick="expandTable()" id="switch-text">Switch to 4x4</button>
+        <button onclick="populateTable()">New Bingo Card</button>
+    </div>
+
+    
+    
+    <p>
+        This Tool was made by <a href="https://pizzafuel.itch.io/">PizzaFuel</a> and has no association to Panic Inc.
+        <br/>
+        The Open Source Code for this Tool is available for free under the MIT License <a href="https://github.com/PizzaFuel/pdDirectBingo" target="_blank">here</a>.
+    </p>
+
+</body>
+
+<style>
     table {
       border-collapse: collapse;
     }
@@ -73,135 +251,26 @@
         background-color: #080706;
     }
 
+    #switch-text {
+        margin-right: 20px;
+        background-color: #FAFAFA;
+        color: #21201A;
+    }
+
+    #switch-text:hover {
+        background-color: #080706;
+        color: white;
+    }
+
     p, p a {
         text-align: center;
         color:white;
         padding-top: 20px;
+        line-height: 1.6em;
     }
 
     p a:hover {
         font-weight: bolder;
     }
-
   </style>
-  <script>
-    function populateTable() {
-        var values = [
-    "Gant is on screen for more than 1 minute straight",
-    "Surprise celebrity appearance (Island Boys?)",
-    "Surprise Panic staff cameo",
-    "A 3D game is shown",
-    "A new contest gets announced",
-    "Cake gets mentioned",
-    "New sequel to a Playdate game",
-    "Long-awaited game finally gets release date",
-    "New port of an existing game",
-    "Itch game comes to Catalog",
-    "Santos Sisters gets mentioned",
-    "Playdate theme gets played",
-    "Stereo Dock",
-    "New tool for the Playdate gets unveiled",
-    "Game bundle gets announced",
-    "Trailer is almost exactly 3 minutes long",
-    "Trailer is shorter than 12 seconds",
-    "Horror game gets shown",
-    "Explicit language (shit, fuck, etc.)",
-    "Game we haven't heard about since last year",
-    "DLC / Free update for a game",
-    "Horrible Dad Pun",
-    "Face of a developer is on screen",
-    "Trailer has voiced narration",
-    "10+ Pulp Games get shown",
-    "Game about flying gets shown",
-    "Card-based game gets shown",
-    "Trailer contains unpacking animation",
-    "Podcast gets mentioned",
-    "New music collection / album release",
-    "Twitter call to action",
-    "Playdate.Store gets mentioned",
-    "New Metroidvania",
-    "Game about pets or monster training",
-    "Physical Playdate Merch",
-    "Something about speedrunning",
-    "Launch animation gets shown",
-    "Block pushing game",
-    "Special new animation for transitions between trailers",
-    "TWO crank puns in ONE trailer",
-    "Release: 2024",
-    "Releasing TODAY",
-    "Broken Playdate shown",
-    "Walking simulator",
-    "Beach gets mentioned",
-    "Pre-existing IP from another platform now on Playdate",
-    "Playdate in a sock is shown",
-    "PIIIIIZZZAAAAA!",
-    "Frog on screen",
-    "Trailer without sound",
-    "\"This Holiday Season\""
-    ];
-
-      var cells = document.getElementsByTagName('td');
-      var usedValues = [];
-
-      for (var i = 0; i < cells.length; i++) {
-        var randomIndex = Math.floor(Math.random() * values.length);
-        var randomValue = values[randomIndex];
-
-        cells[i].textContent = randomValue;
-
-        // Remove the used value from the array to prevent duplicates
-        values.splice(randomIndex, 1);
-        usedValues.push(randomValue);
-      }
-
-      console.log("Used Values:", usedValues);
-    }
-
-    window.addEventListener('DOMContentLoaded', populateTable);
-  </script>
-</head>
-<body>
-    <div class="mainContent">  
-        <h1>PlayDate Direct Bingo</h1>
-        <table>
-            <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    
-    <div class="reset">
-        <button onclick="populateTable()">New Bingo Card</button>
-    </div>
-
-    <p>
-        This Tool was made by <a href="https://pizzafuel.itch.io/">PizzaFuel</a> and has no association to Panic Inc.
-    </p>
-
-</body>
-
 </html>
